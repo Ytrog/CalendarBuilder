@@ -32,10 +32,10 @@
             toolStripContainer1 = new ToolStripContainer();
             toolStrip1 = new ToolStrip();
             toolStripLabel1 = new ToolStripLabel();
+            tsYears = new ToolStripTextBox();
             toolStripLabel2 = new ToolStripLabel();
             tsMonth = new ToolStripComboBox();
-            toolStripButton1 = new ToolStripButton();
-            tsYears = new ToolStripTextBox();
+            btnCreate = new ToolStripButton();
             toolStripContainer1.TopToolStripPanel.SuspendLayout();
             toolStripContainer1.SuspendLayout();
             toolStrip1.SuspendLayout();
@@ -61,10 +61,10 @@
             // toolStrip1
             // 
             toolStrip1.Dock = DockStyle.None;
-            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripLabel1, tsYears, toolStripLabel2, tsMonth, toolStripButton1 });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripLabel1, tsYears, toolStripLabel2, tsMonth, btnCreate });
             toolStrip1.Location = new Point(3, 0);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(448, 25);
+            toolStrip1.Size = new Size(417, 25);
             toolStrip1.TabIndex = 0;
             // 
             // toolStripLabel1
@@ -72,6 +72,11 @@
             toolStripLabel1.Name = "toolStripLabel1";
             toolStripLabel1.Size = new Size(27, 22);
             toolStripLabel1.Text = "Jaar";
+            // 
+            // tsYears
+            // 
+            tsYears.Name = "tsYears";
+            tsYears.Size = new Size(121, 25);
             // 
             // toolStripLabel2
             // 
@@ -84,19 +89,15 @@
             tsMonth.Name = "tsMonth";
             tsMonth.Size = new Size(121, 25);
             // 
-            // toolStripButton1
+            // btnCreate
             // 
-            toolStripButton1.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            toolStripButton1.Image = (Image)resources.GetObject("toolStripButton1.Image");
-            toolStripButton1.ImageTransparentColor = Color.Magenta;
-            toolStripButton1.Name = "toolStripButton1";
-            toolStripButton1.Size = new Size(88, 22);
-            toolStripButton1.Text = "Maak kalender";
-            // 
-            // tsYears
-            // 
-            tsYears.Name = "tsYears";
-            tsYears.Size = new Size(121, 25);
+            btnCreate.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            btnCreate.Image = (Image)resources.GetObject("btnCreate.Image");
+            btnCreate.ImageTransparentColor = Color.Magenta;
+            btnCreate.Name = "btnCreate";
+            btnCreate.Size = new Size(88, 22);
+            btnCreate.Text = "Maak kalender";
+            btnCreate.Click += btnCreate_Click;
             // 
             // Main
             // 
@@ -122,7 +123,7 @@
         private ToolStripComboBox tsMonth;
         private ToolStripLabel toolStripLabel1;
         private ToolStripLabel toolStripLabel2;
-        private ToolStripButton toolStripButton1;
+        private ToolStripButton btnCreate;
         private ToolStripTextBox tsYears;
     }
 }
