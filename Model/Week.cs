@@ -1,13 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CalendarBuilder.Model
+﻿namespace CalendarBuilder.Model
 {
-    internal class Week
+    public class Week
     {
-        public required Day[] Days { get; init; } = new Day[7];
+        public required Day[] Days { get; init; }
+
+        /// <summary>
+        /// Initialize a <see cref="Week"/>. As often a month doesn't begin on Monday a week on the calendar doesn't need to have 7 days
+        /// </summary>
+        /// <param name="days"></param>
+        public Week(params Day[] days)
+        {
+            Days = days;
+        }
     }
 }
