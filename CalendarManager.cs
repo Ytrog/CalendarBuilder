@@ -19,10 +19,12 @@ namespace CalendarBuilder
                 var day = new Model.Day(calendar.GetDayOfWeek(date), calendar.GetDayOfMonth(date));
                 int weeknumber = ISOWeek.GetWeekOfYear(date);
 
-                if (days.ContainsKey(weeknumber) && days[weeknumber] != null)
+                if (!days.ContainsKey(weeknumber) || days[weeknumber] == null)
                 {
-                    days[weeknumber].Add(day);
+                    days[weeknumber] = new();
                 }
+                days[weeknumber].Add(day);
+
             }
 
             // create a month (perhaps a month has weeks and weeks have days?)
