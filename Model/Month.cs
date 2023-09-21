@@ -8,7 +8,7 @@ namespace CalendarBuilder.Model
 {
     public class Month
     {
-        public required List<Week> Weeks { get; set; }
+        public List<Week> Weeks { get; init; }
 
         public Month()
         {
