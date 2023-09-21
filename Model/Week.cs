@@ -10,6 +10,10 @@
         /// <param name="days"></param>
         public Week(params Day[] days)
         {
+            if (!days.Any() || days.Length > 7)
+            {
+                throw new ArgumentException("Must provide between 1 and 7 days", nameof(days));
+            }
             Days = days;
         }
     }

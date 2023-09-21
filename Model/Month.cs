@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace CalendarBuilder.Model
 {
-    internal class Month
+    public class Month
     {
+        public required List<Week> Weeks { get; set; }
+
+        public Month()
+        {
+            Weeks = new List<Week>();
+        }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CalendarBuilder.Model
 {
-    internal class Day
+    public class Day
     {
         public DayOfWeek DayOfWeek { get; init; }
         public int DayOfMonth { get; init; }
