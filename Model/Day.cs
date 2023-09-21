@@ -15,7 +15,7 @@ namespace CalendarBuilder.Model
         {
             DayOfWeek = dayOfWeek;
 
-            if (dayOfMonth > 0 && dayOfMonth < 31) 
+            if (dayOfMonth > 0 && dayOfMonth <= 31) 
             {
                 this.DayOfMonth = dayOfMonth;
             }
