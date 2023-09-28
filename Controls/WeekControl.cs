@@ -69,9 +69,15 @@ namespace CalendarBuilder.Controls
                 {
                     if (days[i] == null)
                     {
-                        days[i] = new DayControl();
+                        tableLayoutPanel1.Controls.Add(new DayControl());
+                    }
+                    else
+                    {
+                        tableLayoutPanel1.Controls.Add(days[i]);
                     }
                 }
+
+                
             }
         }
     }
