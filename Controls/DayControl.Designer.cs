@@ -37,9 +37,8 @@
             lblDay.AutoSize = true;
             lblDay.Location = new Point(68, 10);
             lblDay.Name = "lblDay";
-            lblDay.Size = new Size(38, 15);
+            lblDay.Size = new Size(0, 15);
             lblDay.TabIndex = 0;
-            lblDay.Text = "label1";
             // 
             // DayControl
             // 

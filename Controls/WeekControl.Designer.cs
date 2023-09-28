@@ -36,7 +36,7 @@
             // tableLayoutPanel1
             // 
             tableLayoutPanel1.ColumnCount = 8;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 50F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle());
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle());
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle());
@@ -58,7 +58,7 @@
             lblWeekNumber.AutoSize = true;
             lblWeekNumber.Location = new Point(3, 0);
             lblWeekNumber.Name = "lblWeekNumber";
-            lblWeekNumber.Size = new Size(14, 90);
+            lblWeekNumber.Size = new Size(38, 15);
             lblWeekNumber.TabIndex = 0;
             lblWeekNumber.Text = "label1";
             // 

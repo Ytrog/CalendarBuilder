@@ -25,7 +25,7 @@ namespace CalendarBuilder.Controls
             }
             else
             {
-                lblDay.Text = nameof(lblDay);
+                lblDay.Text = String.Empty;
             }
         }
     }
