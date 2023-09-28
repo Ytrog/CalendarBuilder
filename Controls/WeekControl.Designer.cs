@@ -69,7 +69,6 @@
             Controls.Add(tableLayoutPanel1);
             Name = "WeekControl";
             Size = new Size(938, 210);
-            Load += WeekControl_Load;
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
             ResumeLayout(false);

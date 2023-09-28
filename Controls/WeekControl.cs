@@ -23,16 +23,17 @@ namespace CalendarBuilder.Controls
         public WeekControl()
         {
             InitializeComponent();
+            LoadData();
         }
 
-        private void WeekControl_Load(object sender, EventArgs e)
+        private void LoadData()
         {
             if (Week != null)
             {
                 lblWeekNumber.Text = Week.WeekNumber.ToString();
 
                 DayControl[] days = new DayControl[7];
-                
+
 
                 foreach (Model.Day day in Week.Days)
                 {
