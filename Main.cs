@@ -1,3 +1,4 @@
+using CalendarBuilder.Controls;
 using CalendarBuilder.Model;
 using System.Diagnostics;
 using System.Globalization;
@@ -40,6 +41,12 @@ namespace CalendarBuilder
             Month MonthCalendar = CalendarManager.CreateCalendar(year, month);
 
             // show the calendar
+            MonthControl monthControl = new MonthControl(MonthCalendar);
+            toolStripContainer1.ContentPanel.Controls.Clear();
+            toolStripContainer1.ContentPanel.Controls.Add(monthControl);
+            monthControl.Dock = DockStyle.Fill;
+            monthControl.Show();
+
         }
     }
 }
