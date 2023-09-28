@@ -48,7 +48,6 @@
             Controls.Add(lblDay);
             Name = "DayControl";
             Size = new Size(175, 182);
-            Load += DayControl_Load;
             ResumeLayout(false);
             PerformLayout();
         }

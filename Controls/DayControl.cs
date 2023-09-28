@@ -9,6 +9,8 @@ namespace CalendarBuilder.Controls
         public DayControl()
         {
             InitializeComponent();
+            LoadData();
+
         }
 
         public DayControl(Model.Day day) : this()
@@ -16,7 +18,7 @@ namespace CalendarBuilder.Controls
             Day = day;
         }
 
-        private void DayControl_Load(object sender, EventArgs e)
+        private void LoadData()
         {
             if (Day != null)
             {
