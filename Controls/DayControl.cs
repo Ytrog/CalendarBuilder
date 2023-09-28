@@ -1,4 +1,6 @@
 ﻿using CalendarBuilder.Model;
+using System.Diagnostics;
+using System.Globalization;
 
 namespace CalendarBuilder.Controls
 {
@@ -9,6 +11,7 @@ namespace CalendarBuilder.Controls
         public DayControl()
         {
             InitializeComponent();
+            lblDay.Visible = false;
         }
 
         public DayControl(Model.Day day) : this()
@@ -21,7 +24,8 @@ namespace CalendarBuilder.Controls
         {
             if (Day != null)
             {
-                lblDay.Text = $"{Day.DayOfWeek} {Day.DayOfMonth}";
+                lblDay.Text = $"{DateTimeFormatInfo.CurrentInfo.GetDayName(Day.DayOfWeek)} {Day.DayOfMonth}";
+                lblDay.Visible = true;
             }
             else
             {

@@ -33,9 +33,9 @@
             // 
             // lblDay
             // 
-            lblDay.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             lblDay.AutoSize = true;
-            lblDay.Location = new Point(68, 10);
+            lblDay.Dock = DockStyle.Left;
+            lblDay.Location = new Point(0, 0);
             lblDay.Name = "lblDay";
             lblDay.Size = new Size(0, 15);
             lblDay.TabIndex = 0;
@@ -44,9 +44,10 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BorderStyle = BorderStyle.FixedSingle;
             Controls.Add(lblDay);
             Name = "DayControl";
-            Size = new Size(175, 182);
+            Size = new Size(173, 180);
             ResumeLayout(false);
             PerformLayout();
         }

@@ -37,7 +37,7 @@
             flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
             flowLayoutPanel1.Location = new Point(0, 0);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(643, 436);
+            flowLayoutPanel1.Size = new Size(1204, 677);
             flowLayoutPanel1.TabIndex = 0;
             // 
             // MonthControl
@@ -46,7 +46,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(flowLayoutPanel1);
             Name = "MonthControl";
-            Size = new Size(643, 436);
+            Size = new Size(1204, 677);
             ResumeLayout(false);
         }
 
