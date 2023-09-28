@@ -15,9 +15,10 @@ namespace CalendarBuilder.Controls
     {
         public Model.Month? Month { get; init; }
 
-        public MonthControl(Month? month)
+        public MonthControl(Month? month) : this()
         {
             Month = month;
+            LoadData();
         }
 
         public MonthControl()
@@ -25,11 +26,11 @@ namespace CalendarBuilder.Controls
             InitializeComponent();
         }
 
-        private void MonthControl_Load(object sender, EventArgs e)
+        private void LoadData()
         {
             if (Month != null)
             {
-                foreach (Week week in Month.Weeks.OrderBy(w => w.WeekNumber)) 
+                foreach (Week week in Month.Weeks.OrderBy(w => w.WeekNumber))
                 {
                     flowLayoutPanel1.Controls.Add(new WeekControl(week));
                 }

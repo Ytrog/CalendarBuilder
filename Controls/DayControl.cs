@@ -9,13 +9,12 @@ namespace CalendarBuilder.Controls
         public DayControl()
         {
             InitializeComponent();
-            LoadData();
-
         }
 
         public DayControl(Model.Day day) : this()
         {
             Day = day;
+            LoadData();
         }
 
         private void LoadData()

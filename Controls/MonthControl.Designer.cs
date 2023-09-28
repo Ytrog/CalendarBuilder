@@ -47,7 +47,6 @@
             Controls.Add(flowLayoutPanel1);
             Name = "MonthControl";
             Size = new Size(643, 436);
-            Load += MonthControl_Load;
             ResumeLayout(false);
         }
 

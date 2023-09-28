@@ -15,15 +15,15 @@ namespace CalendarBuilder.Controls
     {
         public Model.Week? Week { get; init; }
 
-        public WeekControl(Week? week)
+        public WeekControl(Week? week) : this()
         {
             Week = week;
+            LoadData();
         }
 
         public WeekControl()
         {
             InitializeComponent();
-            LoadData();
         }
 
         private void LoadData()
@@ -40,7 +40,7 @@ namespace CalendarBuilder.Controls
                     switch (day.DayOfWeek)
                     {
                         case DayOfWeek.Sunday:
-                            days[7] = new DayControl(day);
+                            days[6] = new DayControl(day);
                             break;
                         case DayOfWeek.Monday:
                             days[0] = new DayControl(day);
