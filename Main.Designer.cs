@@ -36,6 +36,7 @@
             toolStripLabel2 = new ToolStripLabel();
             tsMonth = new ToolStripComboBox();
             btnCreate = new ToolStripButton();
+            btnPrint = new ToolStripButton();
             toolStripContainer1.TopToolStripPanel.SuspendLayout();
             toolStripContainer1.SuspendLayout();
             toolStrip1.SuspendLayout();
@@ -61,10 +62,10 @@
             // toolStrip1
             // 
             toolStrip1.Dock = DockStyle.None;
-            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripLabel1, tsYears, toolStripLabel2, tsMonth, btnCreate });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripLabel1, tsYears, toolStripLabel2, tsMonth, btnCreate, btnPrint });
             toolStrip1.Location = new Point(3, 0);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(417, 25);
+            toolStrip1.Size = new Size(497, 25);
             toolStrip1.TabIndex = 0;
             // 
             // toolStripLabel1
@@ -99,6 +100,16 @@
             btnCreate.Text = "Maak kalender";
             btnCreate.Click += btnCreate_Click;
             // 
+            // btnPrint
+            // 
+            btnPrint.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            btnPrint.Enabled = false;
+            btnPrint.Image = (Image)resources.GetObject("btnPrint.Image");
+            btnPrint.ImageTransparentColor = Color.Magenta;
+            btnPrint.Name = "btnPrint";
+            btnPrint.Size = new Size(49, 22);
+            btnPrint.Text = "Printen";
+            // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -126,5 +137,6 @@
         private ToolStripLabel toolStripLabel2;
         private ToolStripButton btnCreate;
         private ToolStripTextBox tsYears;
+        private ToolStripButton btnPrint;
     }
 }
