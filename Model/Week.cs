@@ -1,6 +1,6 @@
 ﻿namespace CalendarBuilder.Model
 {
-    public class Week
+    public class Week : IComparable<Week>
     {
         public Day[] Days { get; init; }
         public int WeekNumber { get; init; }
@@ -23,6 +23,30 @@
 
             WeekNumber = weeknumber;
             Days = days;
+        }
+
+        public int CompareTo(Week? other)
+        {
+            // any value is bigger than null
+            if (other == null)
+            {
+                return 1;
+            }
+
+
+            // implement the special wrap-around where 1 > 52 as january can start with week 52 and december can end with week 1
+            if (this.WeekNumber == 1 && other.WeekNumber == 52)
+            {
+                return 1;
+            }
+            else if (this.WeekNumber == 52 && other.WeekNumber == 1)
+            {
+                return -1;
+            }
+            else 
+            {
+                return this.CompareTo(other);
+            }
         }
     }
 }
