@@ -45,7 +45,7 @@
             }
             else 
             {
-                return this.CompareTo(other);
+                return this.WeekNumber.CompareTo(other.WeekNumber);
             }
         }
     }
