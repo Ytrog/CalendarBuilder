@@ -30,7 +30,7 @@ namespace CalendarBuilder.Controls
         {
             if (Month != null)
             {
-                foreach (Week week in Month.Weeks.OrderBy(w => w.WeekNumber))
+                foreach (Week week in Month.Weeks.Order())
                 {
                     flowLayoutPanel1.Controls.Add(new WeekControl(week));
                 }
