@@ -22,6 +22,17 @@ namespace CalendarBuilder
         {
             tsMonth.Items.Clear();
             tsMonth.Items.AddRange(DateTimeFormatInfo.CurrentInfo.MonthNames);
+
+            SelectCurrentMonth();
+        }
+
+        private void SelectCurrentMonth()
+        {
+            int currentMonth = DateTime.Now.Month;
+
+            int monthIndex = currentMonth - 1; // The list begins with 0, months begin with 1
+
+            tsMonth.SelectedIndex = monthIndex;
         }
 
         private void btnCreate_Click(object sender, EventArgs e)

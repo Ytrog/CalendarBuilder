@@ -107,6 +107,7 @@
             Controls.Add(toolStripContainer1);
             Name = "Main";
             Text = "Calendar Builder";
+            WindowState = FormWindowState.Maximized;
             toolStripContainer1.TopToolStripPanel.ResumeLayout(false);
             toolStripContainer1.TopToolStripPanel.PerformLayout();
             toolStripContainer1.ResumeLayout(false);
