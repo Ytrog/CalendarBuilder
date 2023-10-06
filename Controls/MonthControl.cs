@@ -26,6 +26,16 @@ namespace CalendarBuilder.Controls
             InitializeComponent();
         }
 
+        public void DisableScrollBars()
+        {
+            flowLayoutPanel1.AutoScroll = false;
+        }
+
+        public void EnableScrollBars()
+        {
+            flowLayoutPanel1.AutoScroll = true;
+        }
+
         private void LoadData()
         {
             if (Month != null)
@@ -36,5 +46,7 @@ namespace CalendarBuilder.Controls
                 }
             }
         }
+
+
     }
 }

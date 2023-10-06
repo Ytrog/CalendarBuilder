@@ -103,15 +103,24 @@ namespace CalendarBuilder
 
         private void printDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            if (monthControl == null)
+            if (monthControl == null || e.Graphics == null)
             {
                 return;
             }
 
-            Bitmap bitmap = new(monthControl.Bounds.Width, monthControl.Bounds.Height);
-            monthControl.DrawToBitmap(bitmap, monthControl.Bounds);
+            try
+            {
+                monthControl.DisableScrollBars();
 
-            e.Graphics.DrawImage(bitmap, 0, 0);
+                Bitmap bitmap = new(monthControl.Bounds.Width, monthControl.Bounds.Height);
+                monthControl.DrawToBitmap(bitmap, monthControl.Bounds);
+
+                e.Graphics.DrawImage(bitmap, e.MarginBounds, 0, 0, bitmap.Width, bitmap.Height, GraphicsUnit.Pixel);
+            }
+            finally
+            {
+                monthControl.EnableScrollBars();
+            }
         }
     }
 }
