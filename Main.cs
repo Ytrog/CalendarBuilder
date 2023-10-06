@@ -1,12 +1,15 @@
 using CalendarBuilder.Controls;
 using CalendarBuilder.Model;
 using System.Diagnostics;
+using System.Drawing.Printing;
 using System.Globalization;
 
 namespace CalendarBuilder
 {
     public partial class Main : Form
     {
+
+        private MonthControl? monthControl = null;
 
         public Main()
         {
@@ -52,12 +55,63 @@ namespace CalendarBuilder
             Month MonthCalendar = CalendarManager.CreateCalendar(year, month);
 
             // show the calendar
-            MonthControl monthControl = new MonthControl(MonthCalendar);
+            monthControl = new MonthControl(MonthCalendar);
             toolStripContainer1.ContentPanel.Controls.Clear();
             toolStripContainer1.ContentPanel.Controls.Add(monthControl);
             monthControl.Dock = DockStyle.Fill;
             monthControl.Show();
 
+            btnPrint.Enabled = true;
+
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            if (monthControl == null)
+            {
+                return;
+            }
+
+            printDocument.DocumentName = $"{tsMonth.Text} {tsYears.Text}";
+            printDocument.DefaultPageSettings.Landscape = true;
+
+            PrinterSettings? defaultPrinter = GetDefaultPrinterSettings();
+
+            if (defaultPrinter == null)
+            {
+                throw new InvalidPrinterException(new PrinterSettings());
+            }
+
+            printDocument.DefaultPageSettings.PaperSize = defaultPrinter.DefaultPageSettings.PaperSize;
+
+            printPreviewDialog.Document = printDocument;
+
+            printPreviewDialog.ShowDialog(this);
+        }
+
+        private static PrinterSettings? GetDefaultPrinterSettings()
+        {
+            PrinterSettings printerSettings = new PrinterSettings();
+
+            if (printerSettings.IsDefaultPrinter)
+            {
+                return printerSettings;
+            }
+
+            return null;
+        }
+
+        private void printDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            if (monthControl == null)
+            {
+                return;
+            }
+
+            Bitmap bitmap = new(monthControl.Bounds.Width, monthControl.Bounds.Height);
+            monthControl.DrawToBitmap(bitmap, monthControl.Bounds);
+
+            e.Graphics.DrawImage(bitmap, 0, 0);
         }
     }
 }

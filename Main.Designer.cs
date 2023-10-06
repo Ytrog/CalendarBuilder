@@ -37,6 +37,8 @@
             tsMonth = new ToolStripComboBox();
             btnCreate = new ToolStripButton();
             btnPrint = new ToolStripButton();
+            printDocument = new System.Drawing.Printing.PrintDocument();
+            printPreviewDialog = new PrintPreviewDialog();
             toolStripContainer1.TopToolStripPanel.SuspendLayout();
             toolStripContainer1.SuspendLayout();
             toolStrip1.SuspendLayout();
@@ -65,7 +67,7 @@
             toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripLabel1, tsYears, toolStripLabel2, tsMonth, btnCreate, btnPrint });
             toolStrip1.Location = new Point(3, 0);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(497, 25);
+            toolStrip1.Size = new Size(466, 25);
             toolStrip1.TabIndex = 0;
             // 
             // toolStripLabel1
@@ -109,6 +111,23 @@
             btnPrint.Name = "btnPrint";
             btnPrint.Size = new Size(49, 22);
             btnPrint.Text = "Printen";
+            btnPrint.Click += btnPrint_Click;
+            // 
+            // printDocument
+            // 
+            printDocument.PrintPage += printDocument_PrintPage;
+            // 
+            // printPreviewDialog
+            // 
+            printPreviewDialog.AutoScrollMargin = new Size(0, 0);
+            printPreviewDialog.AutoScrollMinSize = new Size(0, 0);
+            printPreviewDialog.ClientSize = new Size(400, 300);
+            printPreviewDialog.Document = printDocument;
+            printPreviewDialog.Enabled = true;
+            printPreviewDialog.Icon = (Icon)resources.GetObject("printPreviewDialog.Icon");
+            printPreviewDialog.Name = "printPreviewDialog";
+            printPreviewDialog.UseAntiAlias = true;
+            printPreviewDialog.Visible = false;
             // 
             // Main
             // 
@@ -138,5 +157,7 @@
         private ToolStripButton btnCreate;
         private ToolStripTextBox tsYears;
         private ToolStripButton btnPrint;
+        private System.Drawing.Printing.PrintDocument printDocument;
+        private PrintPreviewDialog printPreviewDialog;
     }
 }
