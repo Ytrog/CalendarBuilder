@@ -15,6 +15,8 @@ namespace CalendarBuilder
                 return;
             }
 
+            LogControlBounds(control);
+
             control.DrawToBitmap(bitmap, control.Bounds);
             foreach (Control childControl in control.Controls)
             {
@@ -31,6 +33,13 @@ namespace CalendarBuilder
             }
 
             return true;
+        }
+
+        private static void LogControlBounds(Control control)
+        {
+            string name = control.Name;
+
+            File.AppendAllText(@"c:\test\controls.log", $"{name}: x:{control.Bounds.X} y: {control.Bounds.Y} w: {control.Bounds.Width} h: {control.Bounds.Height}{Environment.NewLine}");
         }
 
     }
