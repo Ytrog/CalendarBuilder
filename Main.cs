@@ -112,8 +112,11 @@ namespace CalendarBuilder
             {
                 monthControl.DisableScrollBars();
 
-                Bitmap bitmap = new(monthControl.Bounds.Width, monthControl.Bounds.Height);
-                monthControl.DrawToBitmap(bitmap, monthControl.Bounds);
+                Bitmap bitmap = new(monthControl.Bounds.Width, monthControl.Bounds.Height + 200);
+                //monthControl.DrawToBitmap(bitmap, monthControl.Bounds);
+                PrintHelper.DrawControl(monthControl, bitmap);
+
+                bitmap.Save(@"c:\test\calendar.png");
 
                 e.Graphics.DrawImage(bitmap, e.MarginBounds, 0, 0, bitmap.Width, bitmap.Height, GraphicsUnit.Pixel);
             }
