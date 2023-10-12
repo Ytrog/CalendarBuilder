@@ -101,7 +101,7 @@ namespace CalendarBuilder
             return null;
         }
 
-        private void printDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        private void printDocument_PrintPage(object sender, PrintPageEventArgs e)
         {
             if (monthControl == null || e.Graphics == null)
             {
@@ -110,11 +110,16 @@ namespace CalendarBuilder
 
             try
             {
-                monthControl.DisableScrollBars();
+                // make an independently scaled version for printing
+                MonthControl printableMonthControl = new MonthControl(monthControl.Month);
+                printableMonthControl.DisableScrollBars();
+                printableMonthControl.ClientSize = Screen.FromControl(this).Bounds.Size; // set to screen size
+                //printableMonthControl.EnableBordersForPrinting();
+                printableMonthControl.BackColor = Color.White;
 
-                Bitmap bitmap = new(monthControl.Bounds.Width, monthControl.Bounds.Height + 200);
-                //monthControl.DrawToBitmap(bitmap, monthControl.Bounds);
-                PrintHelper.DrawControl(monthControl, bitmap);
+                Bitmap bitmap = new(printableMonthControl.Bounds.Width, printableMonthControl.Bounds.Height);
+                PrintHelper.DrawControl(printableMonthControl, bitmap);
+                PrintHelper.DrawBorders(printableMonthControl, bitmap);
 
                 bitmap.Save(@"c:\test\calendar.png");
 

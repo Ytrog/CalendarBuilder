@@ -1,6 +1,7 @@
 ﻿using CalendarBuilder.Controls;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ namespace CalendarBuilder
 {
     internal static class PrintHelper
     {
-        public static void DrawControl(Control control,Bitmap bitmap) 
+        public static void DrawControl(Control control, Bitmap bitmap)
         {
             if (!ShouldPrint(control))
             {
@@ -19,12 +20,67 @@ namespace CalendarBuilder
             LogControlBounds(control);
 
             control.DrawToBitmap(bitmap, control.Bounds);
+
+
+
             foreach (Control childControl in control.Controls)
             {
                 DrawControl(childControl, bitmap);
             }
         }
 
+        public static void DrawBorders(Control control, Bitmap bitmap)
+        {
+            Rectangle bounds = control.Bounds;
+            var offset = control.PointToScreen(bounds.Location);
+
+            bounds.Offset(offset);
+
+            if (control is WeekControl)
+            {
+                Debugger.Break();
+            }
+
+            if (!ShouldPrint(control) && control is not DayControl && control is not WeekControl)
+            {
+                return;
+            }
+
+            Color color = Color.Black;
+            const uint thickness = 2;
+
+            for (int i = 0; i < bounds.Width; i++)
+            {
+                for (int j = 0; j < bounds.Height; j++)
+                {
+
+                    // check bounds
+                    if (bounds.X + i >= bitmap.Width || bounds.Y + j >= bitmap.Height)
+                    {
+                        continue;
+                    }
+
+                    // vertical borders
+                    if (i <= thickness || i >= bounds.Width - thickness)
+                    {
+                        bitmap.SetPixel(bounds.X + i, bounds.Y + j, color);
+                    }
+
+                    // horizontal borders
+                    if (j <= thickness || j >= bounds.Height - thickness)
+                    {
+                        bitmap.SetPixel(bounds.X + i, bounds.Y + j, color);
+                    }
+
+                }
+            }
+
+            foreach (Control childControl in control.Controls)
+            {
+                DrawBorders(childControl, bitmap);
+            }
+
+        }
 
         private static bool ValidateBounds(Rectangle rect)
         {
