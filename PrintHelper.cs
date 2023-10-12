@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CalendarBuilder.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,9 @@ namespace CalendarBuilder
 {
     internal static class PrintHelper
     {
-        public static void DrawControl(Control control,Bitmap bitmap) // TODO doesn't draw first week correcly + backgroudn weird
+        public static void DrawControl(Control control,Bitmap bitmap) 
         {
-            if (!ValidateBounds(control.Bounds))
+            if (!ShouldPrint(control))
             {
                 return;
             }
@@ -35,11 +36,22 @@ namespace CalendarBuilder
             return true;
         }
 
+        private static bool ShouldPrint(Control control)
+        {
+            if (control == null || control.GetType() == typeof(WeekControl) || control.GetType() == typeof(DayControl) || control.GetType() == typeof(Label))
+            {
+                return false;
+            }
+
+            return ValidateBounds(control.Bounds);
+
+        }
+
         private static void LogControlBounds(Control control)
         {
             string name = control.Name;
 
-            File.AppendAllText(@"c:\test\controls.log", $"{name}: x:{control.Bounds.X} y: {control.Bounds.Y} w: {control.Bounds.Width} h: {control.Bounds.Height}{Environment.NewLine}");
+            File.AppendAllText(@"c:\test\controls.log", $"{name}:\t x:{control.Bounds.X} y: {control.Bounds.Y} w: {control.Bounds.Width} h: {control.Bounds.Height} x+w: {control.Bounds.X + control.Bounds.Width} y+h: {control.Bounds.Y + control.Bounds.Height} {Environment.NewLine}");
         }
 
     }
