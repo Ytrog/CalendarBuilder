@@ -18,12 +18,6 @@ namespace CalendarBuilder
                 return;
             }
 
-            if (control is UserControl userControl)
-            {
-                userControl.BorderStyle = BorderStyle.FixedSingle;
-                userControl.Update();
-            }
-
             //LogControlBounds(control);
 
             control.DrawToBitmap(bitmap, control.Bounds);
