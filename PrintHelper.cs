@@ -68,7 +68,7 @@ namespace CalendarBuilder
         /// </summary>
         /// <param name="printableMonthControl"></param>
         /// <param name="bitmap"></param>
-        internal static void DrawHeader(MonthControl printableMonthControl, PrintPageEventArgs e)
+        internal static void DrawHeader(MonthControl printableMonthControl, PrintPageEventArgs e, Func<PrintPageEventArgs, PointF> originSelector)
         {
             if (e.Graphics is null)
             {
@@ -79,7 +79,7 @@ namespace CalendarBuilder
             {
                 Font font = SystemFonts.DefaultFont;
                 Brush brush = new SolidBrush(Color.Black);
-                PointF origin = e.MarginBounds.Location; // implicit Point -> PointF
+                PointF origin = originSelector(e); // implicit Point -> PointF
                 Size offset = new Size(0, 50);
 
                 e.Graphics.DrawString(month.ToString(), font, brush, origin - offset);

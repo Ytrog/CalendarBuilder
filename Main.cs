@@ -12,6 +12,11 @@ namespace CalendarBuilder
 
         private MonthControl? monthControl = null;
 
+        private const int PrintMarginLeft = 15;
+        private const int PrintMarginRight = 0;
+        private const int PrintMarginTop = 75;
+        private const int PrintMarginBottom = 25;
+
         public Main()
         {
             CultureInfo.CurrentCulture = CultureInfo.CreateSpecificCulture("nl-nl");
@@ -85,6 +90,8 @@ namespace CalendarBuilder
 
             printDocument.DefaultPageSettings.PaperSize = defaultPrinter.DefaultPageSettings.PaperSize;
 
+            printDocument.DefaultPageSettings.Margins = new(PrintMarginLeft,PrintMarginRight,PrintMarginTop,PrintMarginBottom);
+
             printPreviewDialog.Document = printDocument;
 
             printPreviewDialog.ShowDialog(this);
@@ -115,9 +122,7 @@ namespace CalendarBuilder
                 MonthControl printableMonthControl = new MonthControl(monthControl.Month);
                 printableMonthControl.DisableScrollBars();
                 printableMonthControl.ClientSize = Screen.FromControl(this).Bounds.Size; // set to screen size
-                //printableMonthControl.EnableBordersForPrinting();
                 printableMonthControl.BackColor = Color.White;
-                
 
                 Bitmap bitmap = new(printableMonthControl.Bounds.Width, printableMonthControl.Bounds.Height);
                 PrintHelper.DrawControl(printableMonthControl, bitmap);
@@ -126,9 +131,11 @@ namespace CalendarBuilder
 
                 bitmap.Save(@"c:\test\calendar.png");
 
-                e.Graphics.DrawImage(bitmap, e.MarginBounds, 0, 0, bitmap.Width, bitmap.Height, GraphicsUnit.Pixel);
+                e.Graphics.DrawImage(bitmap, e.MarginBounds, 0, 0, printableMonthControl.WeekWidth, bitmap.Height, GraphicsUnit.Pixel);
 
-                PrintHelper.DrawHeader(printableMonthControl, e);
+                PrintHelper.DrawHeader(printableMonthControl, e, ea => ea.MarginBounds.Location);
+                
+                
                 
             }
             finally
