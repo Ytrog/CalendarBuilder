@@ -27,13 +27,6 @@ namespace CalendarBuilder
 
             control.DrawToBitmap(bitmap, control.Bounds);
 
-            //Graphics graphics = Graphics.FromImage(bitmap);
-
-            //if (graphics != null)
-            //{
-            //    graphics.DrawRectangle(Pens.Black, control.Bounds);
-            //}
-
             foreach (Control childControl in control.Controls)
             {
                 DrawControl(childControl, bitmap);
@@ -43,9 +36,9 @@ namespace CalendarBuilder
         public static void DrawBorders(Control control, Bitmap bitmap)
         {
             Rectangle bounds = control.Bounds;
-            var offset = control.PointToScreen(bounds.Location);
+            //var offset = control.PointToScreen(bounds.Location);
 
-            bounds.Offset(offset);
+            //bounds.Offset(offset);
 
             if (!ShouldPrint(control) && control is not DayControl && control is not WeekControl)
             {
@@ -58,32 +51,6 @@ namespace CalendarBuilder
             Graphics graphics = Graphics.FromImage(bitmap);
 
             graphics.DrawRectangle(Pens.Black, bounds);
-
-            //for (int i = 0; i < bounds.Width; i++)
-            //{
-            //    for (int j = 0; j < bounds.Height; j++)
-            //    {
-
-            //        // check bounds
-            //        if (bounds.X + i >= bitmap.Width || bounds.Y + j >= bitmap.Height)
-            //        {
-            //            continue;
-            //        }
-
-            //        // vertical borders
-            //        if (i <= thickness || i >= bounds.Width - thickness)
-            //        {
-            //            bitmap.SetPixel(bounds.X + i, bounds.Y + j, color);
-            //        }
-
-            //        // horizontal borders
-            //        if (j <= thickness || j >= bounds.Height - thickness)
-            //        {
-            //            bitmap.SetPixel(bounds.X + i, bounds.Y + j, color);
-            //        }
-
-            //    }
-            //}
 
             foreach (Control childControl in control.Controls)
             {
