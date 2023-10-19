@@ -17,11 +17,22 @@ namespace CalendarBuilder
                 return;
             }
 
+            if (control is UserControl userControl)
+            {
+                userControl.BorderStyle = BorderStyle.FixedSingle;
+                userControl.Update();
+            }
+
             LogControlBounds(control);
 
             control.DrawToBitmap(bitmap, control.Bounds);
 
+            //Graphics graphics = Graphics.FromImage(bitmap);
 
+            //if (graphics != null)
+            //{
+            //    graphics.DrawRectangle(Pens.Black, control.Bounds);
+            //}
 
             foreach (Control childControl in control.Controls)
             {
@@ -36,11 +47,6 @@ namespace CalendarBuilder
 
             bounds.Offset(offset);
 
-            if (control is WeekControl)
-            {
-                Debugger.Break();
-            }
-
             if (!ShouldPrint(control) && control is not DayControl && control is not WeekControl)
             {
                 return;
@@ -49,31 +55,35 @@ namespace CalendarBuilder
             Color color = Color.Black;
             const uint thickness = 2;
 
-            for (int i = 0; i < bounds.Width; i++)
-            {
-                for (int j = 0; j < bounds.Height; j++)
-                {
+            Graphics graphics = Graphics.FromImage(bitmap);
 
-                    // check bounds
-                    if (bounds.X + i >= bitmap.Width || bounds.Y + j >= bitmap.Height)
-                    {
-                        continue;
-                    }
+            graphics.DrawRectangle(Pens.Black, bounds);
 
-                    // vertical borders
-                    if (i <= thickness || i >= bounds.Width - thickness)
-                    {
-                        bitmap.SetPixel(bounds.X + i, bounds.Y + j, color);
-                    }
+            //for (int i = 0; i < bounds.Width; i++)
+            //{
+            //    for (int j = 0; j < bounds.Height; j++)
+            //    {
 
-                    // horizontal borders
-                    if (j <= thickness || j >= bounds.Height - thickness)
-                    {
-                        bitmap.SetPixel(bounds.X + i, bounds.Y + j, color);
-                    }
+            //        // check bounds
+            //        if (bounds.X + i >= bitmap.Width || bounds.Y + j >= bitmap.Height)
+            //        {
+            //            continue;
+            //        }
 
-                }
-            }
+            //        // vertical borders
+            //        if (i <= thickness || i >= bounds.Width - thickness)
+            //        {
+            //            bitmap.SetPixel(bounds.X + i, bounds.Y + j, color);
+            //        }
+
+            //        // horizontal borders
+            //        if (j <= thickness || j >= bounds.Height - thickness)
+            //        {
+            //            bitmap.SetPixel(bounds.X + i, bounds.Y + j, color);
+            //        }
+
+            //    }
+            //}
 
             foreach (Control childControl in control.Controls)
             {

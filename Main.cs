@@ -116,6 +116,7 @@ namespace CalendarBuilder
                 printableMonthControl.ClientSize = Screen.FromControl(this).Bounds.Size; // set to screen size
                 //printableMonthControl.EnableBordersForPrinting();
                 printableMonthControl.BackColor = Color.White;
+                
 
                 Bitmap bitmap = new(printableMonthControl.Bounds.Width, printableMonthControl.Bounds.Height);
                 PrintHelper.DrawControl(printableMonthControl, bitmap);
