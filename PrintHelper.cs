@@ -23,7 +23,7 @@ namespace CalendarBuilder
                 userControl.Update();
             }
 
-            LogControlBounds(control);
+            //LogControlBounds(control);
 
             control.DrawToBitmap(bitmap, control.Bounds);
 
@@ -35,22 +35,31 @@ namespace CalendarBuilder
 
         public static void DrawBorders(Control control, Bitmap bitmap)
         {
-            Rectangle bounds = control.Bounds;
-            //var offset = control.PointToScreen(bounds.Location);
 
-            //bounds.Offset(offset);
+
+            Rectangle bounds = control.Bounds;
 
             if (!ShouldPrint(control) && control is not DayControl && control is not WeekControl)
             {
                 return;
             }
 
-            Color color = Color.Black;
-            const uint thickness = 2;
 
-            Graphics graphics = Graphics.FromImage(bitmap);
+            // Only print the days, the others are the parents
+            if (control is DayControl)
+            {
+                // get the WeekControl ancestor and set the Y to the Y of the WeekControl
+                if (control.Parent?.Parent is WeekControl week)
+                {
+                    Debug.WriteLine($"parent.parent: {week.Bounds}");
 
-            graphics.DrawRectangle(Pens.Black, bounds);
+                    bounds.Y = week.Bounds.Y;
+                }
+
+                Graphics graphics = Graphics.FromImage(bitmap);
+
+                graphics.DrawRectangle(Pens.Black, bounds);
+            }
 
             foreach (Control childControl in control.Controls)
             {
