@@ -5,7 +5,7 @@ namespace CalendarBuilder
 {
     public static class CalendarManager
     {
-        private static readonly GregorianCalendar calendar = new(GregorianCalendarTypes.Localized); // TODO set culture to nl-nl globally
+        private static readonly GregorianCalendar calendar = new(GregorianCalendarTypes.Localized);
 
         public static Month CreateCalendar(int year, int month)
         {
@@ -28,7 +28,7 @@ namespace CalendarBuilder
             }
 
             // create a month (perhaps a month has weeks and weeks have days?)
-            Month currentMonth = new();
+            Month currentMonth = new(year, month);
 
             foreach (int weeknumber in days.Keys)
             {

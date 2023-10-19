@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -68,6 +69,30 @@ namespace CalendarBuilder
 
         }
 
+        /// <summary>
+        /// Draw the month and year at the top
+        /// </summary>
+        /// <param name="printableMonthControl"></param>
+        /// <param name="bitmap"></param>
+        internal static void DrawHeader(MonthControl printableMonthControl, PrintPageEventArgs e)
+        {
+            if (e.Graphics is null)
+            {
+                return;
+            }
+
+            if (printableMonthControl.Month is Model.Month month)
+            {
+                Font font = SystemFonts.DefaultFont;
+                Brush brush = new SolidBrush(Color.Black);
+                PointF origin = e.MarginBounds.Location; // implicit Point -> PointF
+                Size offset = new Size(0, 50);
+
+                e.Graphics.DrawString(month.ToString(), font, brush, origin - offset);
+            }
+
+        }
+
         private static bool ValidateBounds(Rectangle rect)
         {
             if (rect.IsEmpty || rect.Width == 0 || rect.Height == 0)
@@ -96,5 +121,6 @@ namespace CalendarBuilder
             File.AppendAllText(@"c:\test\controls.log", $"{name}:\t x:{control.Bounds.X} y: {control.Bounds.Y} w: {control.Bounds.Width} h: {control.Bounds.Height} x+w: {control.Bounds.X + control.Bounds.Width} y+h: {control.Bounds.Y + control.Bounds.Height} {Environment.NewLine}");
         }
 
+        
     }
 }

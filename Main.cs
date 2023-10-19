@@ -2,6 +2,7 @@ using CalendarBuilder.Controls;
 using CalendarBuilder.Model;
 using System.Diagnostics;
 using System.Drawing.Printing;
+using System.Drawing.Text;
 using System.Globalization;
 
 namespace CalendarBuilder
@@ -103,7 +104,7 @@ namespace CalendarBuilder
 
         private void printDocument_PrintPage(object sender, PrintPageEventArgs e)
         {
-            if (monthControl == null || e.Graphics == null)
+            if (monthControl == null || monthControl.Month == null || e.Graphics == null)
             {
                 return;
             }
@@ -121,10 +122,14 @@ namespace CalendarBuilder
                 Bitmap bitmap = new(printableMonthControl.Bounds.Width, printableMonthControl.Bounds.Height);
                 PrintHelper.DrawControl(printableMonthControl, bitmap);
                 PrintHelper.DrawBorders(printableMonthControl, bitmap);
+                
 
                 bitmap.Save(@"c:\test\calendar.png");
 
                 e.Graphics.DrawImage(bitmap, e.MarginBounds, 0, 0, bitmap.Width, bitmap.Height, GraphicsUnit.Pixel);
+
+                PrintHelper.DrawHeader(printableMonthControl, e);
+                
             }
             finally
             {
