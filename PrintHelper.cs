@@ -108,6 +108,7 @@ namespace CalendarBuilder
 
         }
 
+        [Conditional("DEBUG")]
         private static void LogControlBounds(Control control)
         {
             string name = control.Name;

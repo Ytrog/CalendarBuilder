@@ -127,9 +127,11 @@ namespace CalendarBuilder
                 Bitmap bitmap = new(printableMonthControl.Bounds.Width, printableMonthControl.Bounds.Height);
                 PrintHelper.DrawControl(printableMonthControl, bitmap);
                 PrintHelper.DrawBorders(printableMonthControl, bitmap);
-                
 
-                bitmap.Save(@"c:\test\calendar.png");
+
+#if DEBUG
+                bitmap.Save(@"c:\test\calendar.png"); 
+#endif
 
                 e.Graphics.DrawImage(bitmap, e.MarginBounds, 0, 0, printableMonthControl.WeekWidth, bitmap.Height, GraphicsUnit.Pixel);
 
